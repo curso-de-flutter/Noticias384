@@ -4,9 +4,9 @@ import 'NewsCard.dart';
 class Home extends StatefulWidget{
 
   @override
-  State createState() => _homeState();
+  State createState() => _HomeState();
 }
-class _homeState extends State<Home>{
+class _HomeState extends State<Home>{
 
   @override
   Widget build(BuildContext context) {
