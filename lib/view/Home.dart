@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'NewsCard.dart';
 
 class Home extends StatefulWidget{
 
@@ -13,7 +14,7 @@ class _homeState extends State<Home>{
       appBar: new AppBar(
         title: Text('Noticias384'),
       ),
-      body: Text('HOME'),
+      body: NewsCard(),
     );
   }
 }
