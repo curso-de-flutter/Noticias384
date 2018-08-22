@@ -12,21 +12,27 @@ class _NewsCard extends State<NewsCard>{
     return Card(
       child: Column(
         children: <Widget>[
-          Stack(
+          new Stack(
             alignment: Alignment(0.0, 1.0),
             children: <Widget>[
               Image.network('http://a57.foxnews.com/media2.foxnews.com/BrightCove/694940094001/2018/08/21/0/0/694940094001_5825037545001_5825036631001-vs.jpg'),
               Container(
-                child: Column(
+                width: MediaQuery.of(context).size.width,
+                decoration: new BoxDecoration(
+                  color: Color.fromRGBO(0, 0, 0, 0.7),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(5.0)
+                ),
+                child: new Column(
                   children: <Widget>[
-                    Text('Titulo',
+                    new Text('Titulo',
                     style: new TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: Theme.of(context).textTheme.title.fontSize
                     ),
                     ),
-                    Text('Descripcion de la noticia',
+                    new Text('Descripcion de la noticia',
                       style: new TextStyle(
                           color: Colors.white
                       ),
@@ -36,6 +42,7 @@ class _NewsCard extends State<NewsCard>{
               )
             ],
           ),
+          Divider(color: Colors.black,),
           Text('TARJETA'),
         ],
       ),
