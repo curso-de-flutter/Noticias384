@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'NewsCard.dart';
 import '../model/Noticia.dart';
 import 'dart:async';
+import '../controller/Requests.dart';
 import 'package:async_loader/async_loader.dart';
 
 class Home extends StatefulWidget{
@@ -21,7 +22,7 @@ class _HomeState extends State<Home>{
 
     var _asynLoader = new AsyncLoader(
       key: _asyncLoaderState,
-      initState: () async => await getMessage(),
+      initState: () async => await Requests.petiionNoticias(),
       renderLoad: () => Center(child: CircularProgressIndicator(),),
       renderError: ([error])=> Center(child: Text('Ocurrion un error en la carga'),),
       renderSuccess: ({data}) => Center(child: Text(data),),
