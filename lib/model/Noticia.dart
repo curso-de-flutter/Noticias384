@@ -16,10 +16,10 @@ class Noticia {
     for (var i = 0; i< json.length; i++){
       lista.add(
         new Noticia(
-          titulo: json[i]['title'],
-          descripcion: json[i]['description'],
-          urlNoticia: json[i]['url'],
-          imagenUrl: json[i]['urlToImage']
+          titulo: json[i]['title'] != null ? json[i]['title'] : ' ',
+          descripcion: json[i]['description'] != null ? json[i]['description'] : ' ',
+          urlNoticia: json[i]['url'] != null ? json[i]['url'] : ' ',
+          imagenUrl: json[i]['urlToImage'] != null ? json[i]['urlToImage'] : ' '
         )
       );
     }

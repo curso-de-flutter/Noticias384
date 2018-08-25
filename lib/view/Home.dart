@@ -25,7 +25,15 @@ class _HomeState extends State<Home>{
       initState: () async => await Requests.petiionNoticias(),
       renderLoad: () => Center(child: CircularProgressIndicator(),),
       renderError: ([error])=> Center(child: Text('Ocurrion un error en la carga'),),
-      renderSuccess: ({data}) => Center(child: Text(data.toString()),),
+      renderSuccess: ({data}) => Padding(
+        padding: EdgeInsets.all(16.0),
+        child: ListView.builder(
+            itemBuilder: (BuildContext context, index){
+              return NewsCard(data[index]);
+            },
+          itemCount: data.length,
+        ),
+      ),
     );
 
     return Scaffold(

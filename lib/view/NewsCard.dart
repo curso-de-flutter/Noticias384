@@ -26,21 +26,24 @@ class _NewsCard extends State<NewsCard>{
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(5.0)
                 ),
-                child: new Column(
-                  children: <Widget>[
-                    new Text(widget.noticia.titulo,
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Theme.of(context).textTheme.title.fontSize
-                    ),
-                    ),
-                    new Text(widget.noticia.descripcion,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: new Column(
+                    children: <Widget>[
+                      new Text(widget.noticia.titulo,
                       style: new TextStyle(
-                          color: Colors.white
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: Theme.of(context).textTheme.title.fontSize
                       ),
-                    )
-                  ],
+                      ),
+                      new Text(widget.noticia.descripcion.length >= 100 ? widget.noticia.descripcion.substring(0,100) : widget.noticia.descripcion,
+                        style: new TextStyle(
+                            color: Colors.white
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
