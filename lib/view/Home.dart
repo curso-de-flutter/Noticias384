@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'NewsCard.dart';
 import '../model/Noticia.dart';
+import 'dart:async';
+import 'package:async_loader/async_loader.dart';
 
 class Home extends StatefulWidget{
 
@@ -8,18 +10,35 @@ class Home extends StatefulWidget{
   State createState() => _HomeState();
 }
 class _HomeState extends State<Home>{
+  final GlobalKey<AsyncLoaderState> _asyncLoaderState =
+      new GlobalKey<AsyncLoaderState>();
 
+  getMessage() async{
+    return new Future.delayed(Duration(seconds: 5), ()=> 'Cargado correctamente');
+  }
   @override
   Widget build(BuildContext context) {
+
+    var _asynLoader = new AsyncLoader(
+      key: _asyncLoaderState,
+      initState: () async => await getMessage(),
+      renderLoad: () => Center(child: CircularProgressIndicator(),),
+      renderError: ([error])=> Center(child: Text('Ocurrion un error en la carga'),),
+      renderSuccess: ({data}) => Center(child: Text(data),),
+    );
+
     return Scaffold(
       appBar: new AppBar(
         title: Text('Noticias384'),
       ),
-      body: NewsCard(new Noticia(
-        titulo: 'Mi noticia',
-        descripcion: 'Descripcion de noticia',
-        imagenUrl: 'http://www.elefete.com/wp-content/uploads/2017/06/google-Copiar.jpg'
-      )),
+      body: _asynLoader
+
+//      new NewsCard(new Noticia(
+//        titulo: 'Mi noticia',
+//        descripcion: 'Descripcion de noticia',
+//        imagenUrl: 'http://www.elefete.com/wp-content/uploads/2017/06/google-Copiar.jpg'
+//      ))
+      ,
     );
   }
 }
