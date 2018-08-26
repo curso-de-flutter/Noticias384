@@ -21,7 +21,7 @@ class _HomeState extends State<Home>{
 
   obteniendoDatosImporantes() async{
     var recursos = await Requests.peticionRecursos();
-    print('recursosos: '+recursos.toString());
+//    print('recursosos: '+recursos.toString());
     setState(() {
       _recursos = recursos;
     });
@@ -50,6 +50,21 @@ class _HomeState extends State<Home>{
     return Scaffold(
       appBar: new AppBar(
         title: Text('Noticias384'),
+        actions: <Widget>[
+          PopupMenuButton(
+            onSelected: (seleccion){
+              print('selecicon: $seleccion');
+            },
+            itemBuilder: (BuildContext contex){
+              return _recursos.map((objeto){
+                return PopupMenuItem(
+                  value: objeto['id'],
+                    child: Text(objeto['name']),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       body: _asynLoader
 

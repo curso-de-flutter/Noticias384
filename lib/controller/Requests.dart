@@ -11,8 +11,8 @@ class Requests{
     if (respuesta.statusCode == 200){
       var jsonRespuesta = json.decode(respuesta.body);
 
-      print('Respuesta json');
-      print(jsonRespuesta);
+//      print('Respuesta json');
+//      print(jsonRespuesta);
       var listaNoticias = Noticia.fromJson(jsonRespuesta['articles']);
       return listaNoticias;
     }
@@ -26,12 +26,12 @@ class Requests{
     if (respuesta.statusCode == 200){
       var jsonRespuesta = json.decode(respuesta.body);
 
-      print('Respuesta json');
-      print(jsonRespuesta['sources']);
+//      print('Respuesta json');
+//      print(jsonRespuesta['sources']);
       List<dynamic> listaRecursos = [];
 
       for (var i = 0; i < jsonRespuesta['sources'].length; i++){
-        print(i.toString());
+//        print(i.toString());
         listaRecursos.add(
             {
               'id' : jsonRespuesta['sources'][i]['id'],
