@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
+import 'package:share/share.dart';
 import '../model/Noticia.dart';
 
 class NewsCard extends StatefulWidget{
@@ -56,11 +57,19 @@ class _NewsCard extends State<NewsCard>{
               children: <Widget>[
                 FlatButton(
                   onPressed: (){
-                    print('url de noticia: ${widget.noticia.urlNoticia}');
+//                    print('url de noticia: ${widget.noticia.urlNoticia}');
                     _openUrl(widget.noticia.urlNoticia);
                   },
                   child: Text('Ver Noticia'),
-                )
+                ),
+                FlatButton(
+                  onPressed: (){
+//                    print('url de noticia: ${widget.noticia.urlNoticia}');
+                    Share.share('Te recomiendo que te leas esta noticia: ${widget.noticia.urlNoticia}');
+                  },
+                  child: Text('Compartir Noticia'),
+                ),
+
               ],
             ),
           ),
