@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:async';
 import '../model/Noticia.dart';
 
 class NewsCard extends StatefulWidget{
@@ -55,6 +57,7 @@ class _NewsCard extends State<NewsCard>{
                 FlatButton(
                   onPressed: (){
                     print('url de noticia: ${widget.noticia.urlNoticia}');
+                    _openUrl(widget.noticia.urlNoticia);
                   },
                   child: Text('Ver Noticia'),
                 )
@@ -64,6 +67,14 @@ class _NewsCard extends State<NewsCard>{
         ],
       ),
     );
+  }
+
+  _openUrl(url) async{
+    if (await canLaunch(url)){
+      await launch(url, forceWebView: true);
+    } else{
+      throw 'No se puede abrir URL';
+    }
   }
 
 }
