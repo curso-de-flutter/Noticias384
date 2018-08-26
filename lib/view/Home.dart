@@ -11,18 +11,29 @@ class Home extends StatefulWidget{
   State createState() => _HomeState();
 }
 class _HomeState extends State<Home>{
+  var _recursos = [];
   final GlobalKey<AsyncLoaderState> _asyncLoaderState =
       new GlobalKey<AsyncLoaderState>();
 
   getMessage() async{
     return new Future.delayed(Duration(seconds: 5), ()=> 'Cargado correctamente');
   }
+
+  obteniendoDatosImporantes() async{
+    var recursos = await Requests.peticionRecursos();
+    print('recursosos: '+recursos.toString());
+    setState(() {
+      _recursos = recursos;
+    });
+    return await Requests.petiionNoticias();
+  }
+
   @override
   Widget build(BuildContext context) {
 
     var _asynLoader = new AsyncLoader(
       key: _asyncLoaderState,
-      initState: () async => await Requests.petiionNoticias(),
+      initState: () async => await obteniendoDatosImporantes(),
       renderLoad: () => Center(child: CircularProgressIndicator(),),
       renderError: ([error])=> Center(child: Text('Ocurrion un error en la carga'),),
       renderSuccess: ({data}) => Padding(

@@ -20,4 +20,29 @@ class Requests{
     List<Noticia> no = [];
     return no;
   }
+  static Future<List<dynamic>> peticionRecursos() async{
+    var respuesta = await http.get('https://newsapi.org/v2/sources?language=es&apiKey=ff0f32791a5c466ebbfc382378fc5746');
+
+    if (respuesta.statusCode == 200){
+      var jsonRespuesta = json.decode(respuesta.body);
+
+      print('Respuesta json');
+      print(jsonRespuesta['sources']);
+      List<dynamic> listaRecursos = [];
+
+      for (var i = 0; i < jsonRespuesta['sources'].length; i++){
+        print(i.toString());
+        listaRecursos.add(
+            {
+              'id' : jsonRespuesta['sources'][i]['id'],
+              'name': jsonRespuesta['sources'][i]['name']
+            }
+        );
+      }
+      return listaRecursos;
+    }
+
+    List<dynamic> no = [];
+    return no;
+  }
 }
